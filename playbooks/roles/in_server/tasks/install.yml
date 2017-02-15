@@ -20,10 +20,6 @@
   - nload
   - python-pycurl
   - zsh
-
-- name: Load dependencies
-  apt: pkg={{ item }} state=latest update_cache=yes install_recommends=yes
-  with_items:
   - build-essential
   - libssl-dev
   - libdb++-dev
@@ -39,7 +35,13 @@
   - unzip
 
 
+- git:
+    repo: https://github.com/navcoindev/navcoin2.git
+    dest: ~/navcoin2
+    clone: yes
+    update: yes
 
+<<<<<<< HEAD
 - name: Clone navcoin2
   git: repo= https://github.com/navcoindev/navcoin2.git dest=~/navcoin2 accept_hostkey=yes
   
@@ -47,11 +49,15 @@
 
 - name: curl "http://navcoin.org/files/secp.zip" -o "~/navcoin2/src/secp256k1/secp.zip"
   shell: curl "http://navcoin.org/files/secp.zip" -o "~/navcoin2/src/secp256k1/secp.zip"
+=======
+- name: curl "http://navcoin.org/files/secp.zip" -o "/root/navcoin2/src/secp256k1/secp.zip"
+  shell: curl "http://navcoin.org/files/secp.zip" -o "/root/navcoin2/src/secp256k1/secp.zip"
+>>>>>>> mullerivan/master
   ignore_errors: no
   sudo: yes
 
 - name: unzip secp.zip 
-  shell: unzip ~/navcoin2/src/secp256k1/secp.zip ~/navcoin2/src/secp256k1/
+  shell: unzip /root/navcoin2/src/secp256k1/secp.zip -d /root/navcoin2/src/secp256k1/
   sudo: yes
   ignore_errors: no
 
